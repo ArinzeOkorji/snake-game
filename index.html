@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/74395b4951.js" crossorigin="anonymous"></script>
+    <title>Snake game</title>
+</head>
+
+<body>
+    <div class="canvas">
+        <div class="snakeContainer">
+            <div class="snakeHead snake"></div>
+        </div>
+        <div class="snakeFood"></div>
+    </div>
+
+
+    <div class="scoreContainer">
+        <div>
+            <label for="score">Score</label>
+            <div id="score">0</div>
+        </div>
+        <div>
+            <label for="highScore">High Score</label>
+            <div id="highScore">0</div>
+        </div>
+    </div>
+
+    <div class="controllerContainer">
+        <i class="fas fa-caret-left" id="leftController"></i>
+        <i class="fas fa-caret-up" id="upController"></i>
+        <i class="fas fa-caret-right" id="rightController"></i>
+        <i class="fas fa-caret-down" id="downController"></i>
+    </div>
+
+    <div class="newGame">
+        <div class="gameState">New Game</div>
+        <button id="startBtn">Start</button>
+    </div>
+
+    <div class="playAgain">
+        <div class="gameState">Game Over</div>
+        <button id="resetBtn">Restart</button>
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
