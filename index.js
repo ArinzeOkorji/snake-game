@@ -23,7 +23,9 @@ let yAxisCounter;
 let xAxisCounter;
 
 xAxisCounter = 16;
-yAxisCounter = canvas.getBoundingClientRect().bottom / 2;
+/* yAxisCounter = canvas.getBoundingClientRect().bottom / 2;
+ */
+yAxisCounter = 16 * 10;
 
 snakeHead.style.top = yAxisCounter;
 snakeHead.style.left = xAxisCounter;
