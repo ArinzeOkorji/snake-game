@@ -4,12 +4,14 @@
 
 body {
     margin: 0;
+    background-color: cyan;
 }
 
 .canvas {
-    box-shadow: 0px 4px 2px rgba(0, 0, 0, .5);
-    height: 60vh;
-    width: 100%;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .5);
+    margin: 0 auto;
+    margin-top: 16px;
+    background-color: #fff;
 }
 
 div.snake {
@@ -61,6 +63,8 @@ div.snakeBody {
     font-size: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
+    color: #000;
+    font-weight: bold;
 }
 
 .scoreContainer {
@@ -68,6 +72,9 @@ div.snakeBody {
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    color: rebeccapurple;
+    margin: 0 auto;
+    font-weight: bold;
 }
 
 .controllerContainer {
@@ -80,6 +87,12 @@ div.snakeBody {
 
 i.fas {
     font-size: 50px;
+}
+
+@media screen and (min-width: 992px) {
+    i.fas {
+        display: none;
+    }
 }
 
 i.fa-caret-left {

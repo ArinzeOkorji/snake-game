@@ -1,4 +1,5 @@
 const snakeContainer = document.querySelector(".snakeContainer");
+const scoreContainer = document.querySelector(".scoreContainer");
 let snakeHead = document.querySelector(".snakeHead");
 const snakeSegments = document.getElementsByClassName("snake");
 const snakeFood = document.querySelector(".snakeFood");
@@ -26,9 +27,15 @@ xAxisCounter = 16;
 /* yAxisCounter = canvas.getBoundingClientRect().bottom / 2;
  */
 yAxisCounter = 16 * 10;
+const canvasHeight = document.body.getBoundingClientRect().bottom / 2;
+const canvasWidth = (document.body.getBoundingClientRect().right / 9) * 8;
+canvas.style.height = canvasHeight;
+canvas.style.width = canvasWidth;
+
+scoreContainer.style.width = canvasWidth;
 
 snakeHead.style.top = yAxisCounter;
-snakeHead.style.left = xAxisCounter;
+snakeHead.style.left = canvas.getBoundingClientRect().left;
 
 function start() {
     sessionStorage.setItem("playing", "true");
@@ -225,7 +232,8 @@ const moveSnakeUp = () => {
         snakeSegments[snakeSegments.length - 1]
     );
     hasSnakeEaten();
-    /* moveSnakeBodyUp(); */
+    console.log(parseInt(newSegment.style.top), canvas.getBoundingClientRect().top)
+        /* moveSnakeBodyUp(); */
     if (parseInt(newSegment.style.top) === canvas.getBoundingClientRect().top) {
         console.log("Game Over");
         gameOver();
@@ -374,12 +382,24 @@ window.addEventListener("load", () => {
 
 const makeSnakeFoodAppearRandomly = () => {
     snakeFood.style.visibility = "visible";
-    snakeFood.style.top = Math.ceil(
+    snakeFood.style.top = Math.min(Math.max(Math.ceil(
         Math.random() * canvas.getBoundingClientRect().bottom - 16
-    );
-    snakeFood.style.left = Math.ceil(
+    ), Math.ceil(
+        Math.random() * canvas.getBoundingClientRect().top + 32
+    )), Math.ceil(
+        Math.random() * canvas.getBoundingClientRect().bottom - 16
+    ));
+
+    snakeFood.style.left = Math.min(Math.max(Math.ceil(
         Math.random() * canvas.getBoundingClientRect().right - 16
-    );
+    ), Math.ceil(
+        Math.random() * canvas.getBoundingClientRect().left + 16
+    )), Math.ceil(
+        Math.random() * canvas.getBoundingClientRect().right - 16
+    ));
+    /* snakeFood.style.left = Math.ceil(
+        Math.random() * canvas.getBoundingClientRect().right - 16
+    ); */
 };
 
 const makeSnakeLonger = () => {
@@ -427,16 +447,16 @@ const makeSnakeLonger = () => {
 };
 
 const hasSnakeEaten = () => {
-    console.log(
+    /* console.log(
         Math.ceil(snakeFood.getBoundingClientRect().left) ===
         parseInt(snakeSegments[0].style.left)
     );
     console.log(
         Math.ceil(snakeFood.getBoundingClientRect().left) ==
         parseInt(snakeSegments[0].style.left)
-    );
+    ); */
     //console.log(parseInt(snakeSegments[0].style.left) + 16, parseInt(snakeSegments[0].style.top), parseInt(snakeSegments[0].style.top) + 16, parseInt(snakeSegments[0].style.left))
-    console.log(
+    /* console.log(
         "Snake top",
         parseInt(snakeSegments[0].style.top),
         "Food top",
@@ -459,7 +479,7 @@ const hasSnakeEaten = () => {
         parseInt(snakeSegments[0].style.left) + 16,
         "Food right",
         Math.ceil(snakeFood.getBoundingClientRect().right)
-    );
+    ); */
     if (
         (Math.ceil(snakeFood.getBoundingClientRect().left) <
             parseInt(snakeSegments[0].style.left) + 16 &&
