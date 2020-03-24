@@ -3,7 +3,7 @@
     "short_name": "Snake",
     "theme_color": "#663399",
     "background_color": "#663399",
-    "display": "browser",
+    "display": "standalone",
     "scope": "/",
     "start_url": "."
 }
