@@ -173,10 +173,6 @@ const moveSnakeRight = () => {
     newSegment.classList.add("snake", "snakeHead");
     newSegment.style.top = parseInt(snakeSegments[0].style.top);
     newSegment.style.left = parseInt(snakeSegments[0].style.left) + 16;
-    snakeSegments[0].parentNode.prepend(newSegment);
-    snakeSegments[0].parentNode.removeChild(
-        snakeSegments[snakeSegments.length - 1]
-    );
     /* let snakeWidth = parseInt(snakeHead.clientWidth);
         let newSnakeDistance = parseInt(snakeHead.style.left) + parseInt(snakeWidth);
         snakeHead.style.left = newSnakeDistance
@@ -187,10 +183,18 @@ const moveSnakeRight = () => {
         }) */
     hasSnakeEaten();
     /* moveSnakeBodyRight(); */
+
+    console.log(parseInt(newSegment.style.left) + 16, canvas.getBoundingClientRect().right)
     if (
-        parseInt(newSegment.style.left) + 16 >=
-        canvas.getBoundingClientRect().right
+        parseInt(newSegment.style.left) + 16 <
+        canvas.getBoundingClientRect().right + 16
     ) {
+
+        snakeSegments[0].parentNode.prepend(newSegment);
+        snakeSegments[0].parentNode.removeChild(
+            snakeSegments[snakeSegments.length - 1]
+        );
+    } else {
         console.log("Game Over");
         gameOver();
     }
@@ -205,16 +209,18 @@ const moveSnakeLeft = () => {
     newSegment.classList.add("snake", "snakeHead");
     newSegment.style.top = parseInt(snakeSegments[0].style.top);
     newSegment.style.left = parseInt(snakeSegments[0].style.left) - 16;
-    snakeSegments[0].parentNode.prepend(newSegment);
-    snakeSegments[0].parentNode.removeChild(
-        snakeSegments[snakeSegments.length - 1]
-    );
-    hasSnakeEaten();
+
 
     /* moveSnakeBodyLeft(); */
-    if (parseInt(newSegment.style.left) === canvas.getBoundingClientRect().left) {
+    if (parseInt(newSegment.style.left) < canvas.getBoundingClientRect().left) {
         console.log("Game Over");
         gameOver();
+    } else {
+        snakeSegments[0].parentNode.prepend(newSegment);
+        snakeSegments[0].parentNode.removeChild(
+            snakeSegments[snakeSegments.length - 1]
+        );
+        hasSnakeEaten();
     }
 };
 const moveSnakeUp = () => {
@@ -227,16 +233,17 @@ const moveSnakeUp = () => {
     newSegment.classList.add("snake", "snakeHead");
     newSegment.style.left = parseInt(snakeSegments[0].style.left);
     newSegment.style.top = parseInt(snakeSegments[0].style.top) - 16;
-    snakeSegments[0].parentNode.prepend(newSegment);
-    snakeSegments[0].parentNode.removeChild(
-        snakeSegments[snakeSegments.length - 1]
-    );
-    hasSnakeEaten();
     console.log(parseInt(newSegment.style.top), canvas.getBoundingClientRect().top)
         /* moveSnakeBodyUp(); */
-    if (parseInt(newSegment.style.top) === canvas.getBoundingClientRect().top) {
+    if (parseInt(newSegment.style.top) < canvas.getBoundingClientRect().top) {
         console.log("Game Over");
         gameOver();
+    } else {
+        snakeSegments[0].parentNode.prepend(newSegment);
+        snakeSegments[0].parentNode.removeChild(
+            snakeSegments[snakeSegments.length - 1]
+        );
+        hasSnakeEaten();
     }
 };
 const moveSnakeDown = () => {
@@ -249,16 +256,18 @@ const moveSnakeDown = () => {
     newSegment.classList.add("snake", "snakeHead");
     newSegment.style.left = parseInt(snakeSegments[0].style.left);
     newSegment.style.top = parseInt(snakeSegments[0].style.top) + 16;
-    snakeSegments[0].parentNode.prepend(newSegment);
-    snakeSegments[0].parentNode.removeChild(
-        snakeSegments[snakeSegments.length - 1]
-    );
-    hasSnakeEaten();
     /* moveSnakeBodyDown(); */
     if (
-        parseInt(snakeSegments[0].style.top) + 16 ===
+        parseInt(snakeSegments[0].style.top) + 16 <
         canvas.getBoundingClientRect().bottom
     ) {
+
+        snakeSegments[0].parentNode.prepend(newSegment);
+        snakeSegments[0].parentNode.removeChild(
+            snakeSegments[snakeSegments.length - 1]
+        );
+        hasSnakeEaten();
+    } else {
         console.log("Game Over");
         gameOver();
     }
@@ -325,7 +334,7 @@ resetBtn.addEventListener("click", () => {
 
 const gameOver = () => {
     if ("vibrate" in navigator) {
-        window.navigator.vibrate(800);
+        window.navigator.vibrate(40);
     }
     clearAllIntervals();
     document.addEventListener("keydown", event => {
