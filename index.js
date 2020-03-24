@@ -1,3 +1,8 @@
+console.log(navigator)
+if ('serviceWorker' in navigator) {
+    console.log(',')
+    navigator.serviceWorker.register('/sw.js')
+}
 const snakeContainer = document.querySelector(".snakeContainer");
 const scoreContainer = document.querySelector(".scoreContainer");
 let snakeHead = document.querySelector(".snakeHead");
