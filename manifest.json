@@ -4,6 +4,6 @@
     "theme_color": "#663399",
     "background_color": "#663399",
     "display": "standalone",
-    "scope": "https://websnakegame.netlify.com/",
-    "start_url": "."
+    "scope": "/",
+    "start_url": "https://websnakegame.netlify.com/"
 }
