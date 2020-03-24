@@ -1,0 +1,9 @@
+{
+    "name": "Snake",
+    "short_name": "Snake",
+    "theme_color": "#663399",
+    "background_color": "#663399",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/"
+}

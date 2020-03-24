@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background-color: cyan;
+    background-color: #00ffff;
 }
 
 .canvas {
@@ -20,7 +20,7 @@ div.snake {
     width: 16px;
     position: absolute;
     top: 0;
-    background-color: rebeccapurple;
+    background-color: #663399;
 }
 
 div.snakeFood {
