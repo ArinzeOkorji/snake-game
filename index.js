@@ -2,7 +2,7 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
 }
 
-/* window.addEventListener('beforeinstallprompt', (event) => {
+window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     event.prompt();
     event.userChoice.then((choiceResult) => {
@@ -13,7 +13,7 @@ if ('serviceWorker' in navigator) {
         }
         deferredPrompt = null;
     })
-}) */
+})
 
 const snakeContainer = document.querySelector(".snakeContainer");
 const scoreContainer = document.querySelector(".scoreContainer");

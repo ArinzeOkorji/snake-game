@@ -1,4 +1,4 @@
-const cacheVersion = 'snakeCache4';
+const cacheVersion = 'snakeCache3';
 const filesToCache = [
     '/',
     '/index.html',
@@ -8,13 +8,13 @@ const filesToCache = [
 
 self.addEventListener('install', (e) => {
     console.log('install')
-        /* e.waitUntil(
-            caches.open(cacheVersion)
-            .then((cache) => {
-                cache.addAll(filesToCache);
-            })
-            .then(() => self.skipWaiting())
-        ); */
+    e.waitUntil(
+        caches.open(cacheVersion)
+        .then((cache) => {
+            cache.addAll(filesToCache);
+        })
+        .then(() => self.skipWaiting())
+    );
 });
 
 self.addEventListener('activate', (e) => {
@@ -39,45 +39,45 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
     console.log('fetch')
-        /* e.respondWith(
-            fetch(e.request)
-            .catch(() => {
-                return caches.match(e.request);
-            })
-            .then((response) => {
-                return response
-            })
-        ) */
-
     e.respondWith(
-            caches.match(e.request)
-            .then(res => {
-                if (!res) {
-                    fetch(e.request)
-                        .then(res => {
-                            caches.open(cacheVersion)
-                                .then(cache => {
-                                    cache.add(e.request)
-                                })
-                                //caches.put(e.request, res.clone())
-                            return res;
-                        })
-                } else {
-                    return res;
-                }
-            })
+        fetch(e.request)
+        .catch(() => {
+            return caches.match(e.request);
+        })
+        .then((response) => {
+            return response
+        })
+    )
 
-        )
-        /* e.respondWith(
-            caches.open(cacheVersion)
-            .then(cache => {
-                return fetch(e.request)
-                    .then(res => {
-                        cache.put(e.request, res.clone());
-                        return res
-                    })
-            })
-        ) */
+    /*  e.respondWith(
+             caches.match(e.request)
+             .then(res => {
+                 if (!res) {
+                     fetch(e.request)
+                         .then(res => {
+                             caches.open(cacheVersion)
+                                 .then(cache => {
+                                     cache.add(e.request)
+                                 })
+                                 //caches.put(e.request, res.clone())
+                             return res;
+                         })
+                 } else {
+                     return res;
+                 }
+             })
+
+         ) */
+    /* e.respondWith(
+        caches.open(cacheVersion)
+        .then(cache => {
+            return fetch(e.request)
+                .then(res => {
+                    cache.put(e.request, res.clone());
+                    return res
+                })
+        })
+    ) */
 
 })
 
