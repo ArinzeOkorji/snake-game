@@ -1,8 +1,20 @@
-console.log(navigator)
 if ('serviceWorker' in navigator) {
-    console.log(',')
     navigator.serviceWorker.register('/sw.js')
 }
+
+/* window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    event.prompt();
+    event.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+        } else {
+            console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+    })
+}) */
+
 const snakeContainer = document.querySelector(".snakeContainer");
 const scoreContainer = document.querySelector(".scoreContainer");
 let snakeHead = document.querySelector(".snakeHead");
@@ -238,8 +250,9 @@ const moveSnakeUp = () => {
     newSegment.classList.add("snake", "snakeHead");
     newSegment.style.left = parseInt(snakeSegments[0].style.left);
     newSegment.style.top = parseInt(snakeSegments[0].style.top) - 16;
-    console.log(parseInt(newSegment.style.top), canvas.getBoundingClientRect().top)
-        /* moveSnakeBodyUp(); */
+    /* 
+        console.log(parseInt(newSegment.style.top), canvas.getBoundingClientRect().top) */
+    /* moveSnakeBodyUp(); */
     if (parseInt(newSegment.style.top) < canvas.getBoundingClientRect().top) {
         console.log("Game Over");
         gameOver();
@@ -419,7 +432,6 @@ const makeSnakeFoodAppearRandomly = () => {
 const makeSnakeLonger = () => {
     const snakeBody = document.createElement("div");
     snakeBody.classList.add("snakeBody", "snake");
-    console.log(snakeSegments);
 
     if (moveLeftInterval) {
         snakeBody.style.left =
