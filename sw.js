@@ -1,4 +1,4 @@
-const cacheVersion = 'snakeCache3';
+const cacheVersion = 'snakeCache4';
 const filesToCache = [
     '/',
     '/index.html',

@@ -2,19 +2,6 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
 }
 
-window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    event.prompt();
-    event.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-        } else {
-            console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-    })
-})
-
 const snakeContainer = document.querySelector(".snakeContainer");
 const scoreContainer = document.querySelector(".scoreContainer");
 let snakeHead = document.querySelector(".snakeHead");
